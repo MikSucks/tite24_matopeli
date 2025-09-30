@@ -48,8 +48,13 @@ class SnakeGame(QGraphicsView):
         elif self.direction == Qt.Key_Down:
             new_head = (head_x, head_y + 1)
 
+        if new_head in self.snake or not (0 <= new_head[0] < GRID_WIDTH) or not (0 <= new_head[1] < GRID_HEIGHT):
+            self.timer.stop()
+            return
+
         self.snake.insert(0, new_head)
-        
+        if new_head == self.food:
+            self.food = self.spawn_food()
         self.snake.pop()
 
         self.print_game()
