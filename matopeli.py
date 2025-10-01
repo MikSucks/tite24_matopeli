@@ -72,8 +72,23 @@ class SnakeGame(QGraphicsView):
             self.game_over = True
 
             self.scene().clear()
-            self.scene().addText("Game Over", QFont("Arial", 24))
-            self.scene().addText("\nPress any key to start new game", QFont("Arial", 14))
+
+# Game Over
+            game_over = self.scene().addText("Game Over", QFont("Arial", 24))
+            game_over_rect = game_over.boundingRect()
+            game_over.setPos(
+                (self.sceneRect().width() - game_over_rect.width()) / 2,
+                self.sceneRect().height() / 2 - 40  # hieman ylemmäksi
+)
+
+# Press any key to start new game
+            restart = self.scene().addText("Press any key to start new game", QFont("Arial", 14))
+            restart_rect = restart.boundingRect()
+            restart.setPos(
+                (self.sceneRect().width() - restart_rect.width()) / 2,
+                self.sceneRect().height() / 2 + 10  # alle ja erilleen
+)
+
             return
 
             
