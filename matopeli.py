@@ -3,7 +3,8 @@ import sys
 import random
 from PySide6.QtWidgets import QApplication, QGraphicsView, QGraphicsScene, QMenu
 from PySide6.QtGui import QPainter, QPen, QBrush, QFont
-from PySide6.QtCore import Qt, QTimer
+from PySide6.QtCore import Qt, QTimer, QUrl   # <<< LISÄTTY QUrl
+from PySide6.QtMultimedia import QSoundEffect
 
 
 
@@ -28,6 +29,14 @@ class SnakeGame(QGraphicsView):
         # starting game by button
         self.game_started = False
         self.init_screen()
+        # ÄÄNIEFECTIT <<< LISÄTTY
+        self.eat_sound = QSoundEffect()
+        self.eat_sound.setSource(QUrl.fromLocalFile("eat.wav"))
+        self.eat_sound.setVolume(0.5)
+
+        self.gameover_sound = QSoundEffect()
+        self.gameover_sound.setSource(QUrl.fromLocalFile("gameover.wav"))
+        self.gameover_sound.setVolume(0.8)
 
     def keyPressEvent(self, event):
         key = event.key()
@@ -73,6 +82,8 @@ class SnakeGame(QGraphicsView):
 
         if new_head in self.snake or not (0 <= new_head[0] < GRID_WIDTH) or not (0 <= new_head[1] < GRID_HEIGHT):
             self.timer.stop()
+            # ÄÄNI GAME OVER <<< LISÄTTY
+            self.gameover_sound.play()
             self.game_over = True
             self.gameover_sound.play()
             
@@ -103,6 +114,8 @@ class SnakeGame(QGraphicsView):
 
         self.snake.insert(0, new_head)
         if new_head == self.food:
+            # ÄÄNI SYÖMINEN <<< LISÄTTY
+            self.eat_sound.play()
             self.score += 1
             
 
