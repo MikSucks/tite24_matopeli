@@ -98,12 +98,22 @@ class SnakeGame(QGraphicsView):
     def print_game(self):
         self.scene().clear()
 
+
+    # Piirrä mato (vihreä)
         for segment in self.snake:
             x, y = segment
-            self.scene().addRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE, QPen(Qt.black), QBrush(Qt.black))
-        
+            self.scene().addRect(
+                x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE,
+                QPen(Qt.black), QBrush(Qt.green)
+        )
+
+    # Piirrä ruoka (punainen)
         fx, fy = self.food
-        self.scene().addRect(fx * CELL_SIZE, fy * CELL_SIZE, CELL_SIZE, CELL_SIZE, QPen(Qt.black), QBrush(Qt.black))
+        self.scene().addRect(
+            fx * CELL_SIZE, fy * CELL_SIZE, CELL_SIZE, CELL_SIZE,
+            QPen(Qt.black), QBrush(Qt.red)
+    )
+
          
         self.scene().addText(f"Score: {self.score}", QFont("Arial", 12)) 
         
