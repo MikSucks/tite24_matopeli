@@ -100,6 +100,9 @@ class SnakeGame(QGraphicsView):
         fx, fy = self.food
         self.scene().addRect(fx * CELL_SIZE, fy * CELL_SIZE, CELL_SIZE, CELL_SIZE, QPen(Qt.black), QBrush(Qt.black))
 
+    # print score
+    self.scene().addText(f"Score: {self.score}", QFont("Arial", 12))
+
     def start_game(self):
         self.direction = Qt.Key_Right
         self.snake = [(5, 5), (5, 6), (5, 7)]
