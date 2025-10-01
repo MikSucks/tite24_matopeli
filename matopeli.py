@@ -103,6 +103,7 @@ class SnakeGame(QGraphicsView):
         self.scene().addText(f"Score: {self.score}", QFont("Arial", 12)) 
         
 
+
     def start_game(self):
         self.direction = Qt.Key_Right
         self.snake = [(5, 5), (5, 6), (5, 7)]
