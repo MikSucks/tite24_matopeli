@@ -5,6 +5,8 @@ from PySide6.QtWidgets import QApplication, QGraphicsView, QGraphicsScene, QMenu
 from PySide6.QtGui import QPainter, QPen, QBrush, QFont
 from PySide6.QtCore import Qt, QTimer
 
+
+
 # vakiot
 CELL_SIZE = 20
 GRID_WIDTH = 20
@@ -20,6 +22,8 @@ class SnakeGame(QGraphicsView):
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_game)
+
+
 
         # starting game by button
         self.game_started = False
@@ -70,8 +74,11 @@ class SnakeGame(QGraphicsView):
         if new_head in self.snake or not (0 <= new_head[0] < GRID_WIDTH) or not (0 <= new_head[1] < GRID_HEIGHT):
             self.timer.stop()
             self.game_over = True
+            
 
             self.scene().clear()
+
+            
 
 # Game Over
             game_over = self.scene().addText("Game Over", QFont("Arial", 24))
@@ -96,6 +103,8 @@ class SnakeGame(QGraphicsView):
         self.snake.insert(0, new_head)
         if new_head == self.food:
             self.score += 1
+            
+
             # for levels
             if self.score == self.level_limit:
                 self.level_limit += 5
