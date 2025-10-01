@@ -74,6 +74,7 @@ class SnakeGame(QGraphicsView):
         if new_head in self.snake or not (0 <= new_head[0] < GRID_WIDTH) or not (0 <= new_head[1] < GRID_HEIGHT):
             self.timer.stop()
             self.game_over = True
+            self.gameover_sound.play()
             
 
             self.scene().clear()
